@@ -1,5 +1,5 @@
-import { createSelector } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { createSelector } from "@ngrx/store";
+import { AppState } from "../core.state";
 
 export const selectCounterState = (state: AppState) => state.counterList;
 

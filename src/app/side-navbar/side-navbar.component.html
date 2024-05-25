@@ -1,0 +1,45 @@
+<!-- 
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav>
+    <p>Menu Content</p>
+  </mat-sidenav>
+
+  <mat-drawer-container
+    class="example-container"
+    autosize>
+    <mat-drawer
+      #drawer
+      class="example-sidenav"
+      mode="side">
+      <p>Auto-resizing sidenav</p>
+      <p>Lorem, ipsum dolor sit amet consectetur.</p>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</mat-sidenav-container>
+
+ -->
+
+<mat-drawer-container
+  class="example-container"
+  autosize>
+  <mat-drawer
+    #sidenav
+    class="example-sidenav"
+    mode="side">
+    <p>menu items</p>
+    <p>menu items</p>
+    <p>menu items</p>
+    <p>menu items</p>
+    <p>menu items</p>
+    <!-- @if (showFiller) { -->
+    <!-- } -->
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
