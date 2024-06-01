@@ -13,13 +13,10 @@ import { Store, select } from "@ngrx/store";
 import {
   selectAllCustomer,
   selectCustomerTotal,
-  selectCustomerError,
-  selectCustomerLoading,
 } from "../ngRx/customer/customer.selectors";
 import { loadingCustomers } from "../ngRx/customer/customer.actions";
-import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
-import { Observable, merge, Subject, Subscription, of } from "rxjs";
-import { tap, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { Observable } from "rxjs";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { AsyncPipe, CommonModule, DatePipe } from "@angular/common";
 

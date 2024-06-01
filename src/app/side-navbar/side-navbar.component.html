@@ -30,16 +30,35 @@
     #sidenav
     class="example-sidenav"
     mode="side">
-    <p>menu items</p>
-    <p>menu items</p>
-    <p>menu items</p>
-    <p>menu items</p>
-    <p>menu items</p>
-    <!-- @if (showFiller) { -->
-    <!-- } -->
+    <mat-list role="list">
+      <mat-list-item role="createOpportunity">
+        <button
+          (click)="openCreateOpportunity()"
+          mat-button>
+          Add Opportunity
+        </button>
+      </mat-list-item>
+      <mat-list-item role="createPerson">
+        <button
+          (click)="openCreatePerson()"
+          mat-button>
+          Add Person
+        </button>
+      </mat-list-item>
+      <mat-list-item role="createPerson">
+        <button
+          (click)="openRelatePersonOpportunity()"
+          mat-button>
+          Relate Person/Opportunity
+        </button>
+      </mat-list-item>
+    </mat-list>
   </mat-drawer>
 
   <div class="example-sidenav-content">
+    <div *ngIf="asyncSpinnerVisible">
+      <app-async-spinner></app-async-spinner>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>

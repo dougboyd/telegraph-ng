@@ -17,6 +17,9 @@ export class TopToolbarComponent {
 
   constructor(private store: Store<AppState>) {}
 
+  /**
+   * Send a menu toggle to the ux store
+   */
   toggleMenu() {
     this.store.dispatch(toggleNavBar());
   }

@@ -16,6 +16,10 @@ import { CustomerService } from "./ngRx/customer/customer.service";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { uxReducer } from "./ngRx/ux/ux.reducers";
 import { UxEffects } from "./ngRx/ux/ux.effects";
+import { ReactiveFormsModule } from "@angular/forms";
+import { telegraphReducer } from "./ngRx/telegraph/telegraph.reducers";
+import { TelegraphEffects } from "./ngRx/telegraph/telegraph.effects";
+import { TelegraphService } from "./ngRx/telegraph/telegraph.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,12 +28,16 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: "counterList", reducer: counterListReducer }),
     provideState({ name: "customer", reducer: customerReducer }),
     provideState({ name: "ux", reducer: uxReducer }),
+    provideState({ name: "telegraph", reducer: telegraphReducer }),
     provideEffects(CustomerEffects),
+    provideEffects(TelegraphEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimationsAsync(),
     CustomerService,
+    TelegraphService,
     HttpClientModule,
     HttpClient,
+    ReactiveFormsModule,
     importProvidersFrom(HttpClientModule),
   ],
 };

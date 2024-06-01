@@ -14,18 +14,26 @@ import { Store, select } from "@ngrx/store";
 import { selectNavVisible } from "../ngRx/ux/ux.selectors";
 import { AsyncPipe, CommonModule } from "@angular/common";
 import { MatIconModule } from "@angular/material/icon";
-import { toggleNavBar } from "../ngRx/ux/ux.actions";
+import { MatDialog } from "@angular/material/dialog";
+import { MatListModule } from "@angular/material/list";
+import { CreateOpportunityComponent } from "../create-opportunity/create-opportunity.component";
+import { AsyncSpinnerComponent } from "../async-spinner/async-spinner.component";
+import { selectLoading } from "../ngRx/telegraph/telegraph.selectors";
+import { CreatePersonComponent } from "../create-person/create-person.component";
+import { RelatePersonOpportunityComponent } from "../relate-person-opportunity/relate-person-opportunity.component";
 
 @Component({
   selector: "app-side-navbar",
   standalone: true,
   imports: [
+    MatListModule,
     MatSidenavModule,
     MatButtonModule,
     RouterOutlet,
     AsyncPipe,
     CommonModule,
     MatIconModule,
+    AsyncSpinnerComponent,
   ],
   templateUrl: "./side-navbar.component.html",
   styleUrl: "./side-navbar.component.scss",
@@ -34,12 +42,49 @@ export class SideNavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild("sidenav") sidenav!: MatSidenav;
 
   navVisible$!: Observable<boolean>;
+  asyncSpinnerVisible$!: Observable<boolean>;
+  asyncSpinnerVisible: boolean = false;
 
   subscriptions: Subscription[] = [];
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    public asyncSpinnerModal: MatDialog,
+    private store: Store<AppState>,
+    public dialog: MatDialog
+  ) {}
 
+  /**
+   * Run on init
+   */
   ngOnInit(): void {
+    this.listenForUxChanges();
+    this.listenForAsyncSpinnerChanges();
+
+    /*
+    setTimeout(() => {
+      this.openRelatePersonOpportunity();
+    }, 1000);
+    */
+  }
+
+  /**
+   * Listen for async spinner changes
+   */
+  listenForAsyncSpinnerChanges() {
+    // Logic for listening to the store for changes to the loading spinner
+    this.asyncSpinnerVisible$ = this.store.pipe(select(selectLoading));
+    this.subscriptions.push(
+      this.asyncSpinnerVisible$.subscribe((visible) => {
+        this.asyncSpinnerVisible = visible;
+      })
+    );
+  }
+
+  /**
+   * Logic for listening to the store for changes to the side nav
+   */
+  listenForUxChanges() {
+    // Logic for listening to the store for changes to the side nav
     this.navVisible$ = this.store.pipe(select(selectNavVisible));
     this.subscriptions.push(
       this.navVisible$.subscribe((navVisible) => {
@@ -57,7 +102,7 @@ export class SideNavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Open the nav after the page has finished loading
    */
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     setTimeout(() => {
       this.sidenav.open();
     }, 100);
@@ -70,5 +115,26 @@ export class SideNavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions.forEach((sub) => {
       sub.unsubscribe();
     });
+  }
+
+  /**
+   * Opens the Create Opportunity modal
+   */
+  openCreateOpportunity(): void {
+    const dialogRef = this.dialog.open(CreateOpportunityComponent);
+  }
+
+  /**
+   * Opens the Create Person modal
+   */
+  openCreatePerson(): void {
+    const dialogRef = this.dialog.open(CreatePersonComponent);
+  }
+
+  /**
+   * Opens the Relate Person Opporuntity modal
+   */
+  openRelatePersonOpportunity(): void {
+    const dialogRef = this.dialog.open(RelatePersonOpportunityComponent);
   }
 }

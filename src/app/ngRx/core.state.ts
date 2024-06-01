@@ -9,10 +9,14 @@ import { customerReducer } from "./customer/customer.reducers";
 import { UxState } from "./ux/ux.state";
 import { uxReducer } from "./ux/ux.reducers";
 
+import { TelegraphState } from "./telegraph/telegraph.state";
+import { telegraphReducer } from "./telegraph/telegraph.reducers";
+
 export const reducers: ActionReducerMap<AppState> = {
   counterList: counterListReducer,
   customer: customerReducer,
   ux: uxReducer,
+  telegraph: telegraphReducer,
 };
 
 export const selectCounterListState =
@@ -20,9 +24,12 @@ export const selectCounterListState =
 export const selectCustomerState =
   createFeatureSelector<CustomerState>("customer");
 export const selectUxState = createFeatureSelector<UxState>("ux");
+export const selectTelegraphState =
+  createFeatureSelector<TelegraphState>("telegraph");
 
 export interface AppState {
   counterList: CounterListState;
   customer: CustomerState;
   ux: UxState;
+  telegraph: TelegraphState;
 }
