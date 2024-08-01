@@ -13,6 +13,43 @@ export class TelegraphService {
   constructor(private httpClient: HttpClient) {}
 
   /**
+   * Get the data (via post) for relationship map
+   * @returns
+   */
+  public postRelationshipMapData(filter: any): Observable<any> {
+    return this.httpClient.post(
+      "http://localhost:8080/postRelationshipMapData",
+      filter
+    );
+  }
+
+  /**
+   * Get standing data
+   * @returns
+   */
+  public getStandingData(): Observable<any> {
+    return this.httpClient.get("http://localhost:8080/getStandingData");
+  }
+
+  /**
+   * Get all nodes
+   * @param opportunity
+   * @returns
+   */
+  public getAllNodes(): Observable<any> {
+    return this.httpClient.get("http://localhost:8080/getAllNodes");
+  }
+
+  /**
+   * Load all the persons from the database.
+   * @param opportunity
+   * @returns
+   */
+  public loadTestD3Data(): Observable<any> {
+    return this.httpClient.post("http://localhost:8080/telegraphGraph", null);
+  }
+
+  /**
    * Load all the persons from the database.
    * @param opportunity
    * @returns
@@ -45,6 +82,18 @@ export class TelegraphService {
     return this.httpClient.post<Person>(
       "http://localhost:8080/createPerson",
       person
+    );
+  }
+
+  /**
+   * Create a relationship
+   * @param person
+   * @returns
+   */
+  public createRelationship(formData: any): Observable<any> {
+    return this.httpClient.post<any>(
+      "http://localhost:8080/createRelationship",
+      formData
     );
   }
 

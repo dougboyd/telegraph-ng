@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { telegraphReducer } from "./ngRx/telegraph/telegraph.reducers";
 import { TelegraphEffects } from "./ngRx/telegraph/telegraph.effects";
 import { TelegraphService } from "./ngRx/telegraph/telegraph.service";
+import { IpService } from "./ngRx/telegraph/ip-service.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,6 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     CustomerService,
     TelegraphService,
+    IpService,
     HttpClientModule,
     HttpClient,
     ReactiveFormsModule,

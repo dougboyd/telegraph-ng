@@ -61,11 +61,11 @@ export class CreatePersonComponent implements OnInit {
 
   createForm() {
     this.formGroup = this.formBuilder.group({
-      name: ["Jeff Goldblum", Validators.required],
-      jobTitle: ["Actor", Validators.required],
-      rank: ["King"],
+      name: ["", Validators.required],
+      jobTitle: ["", Validators.required],
+      rank: [""],
       archtisFriendly: [
-        "8",
+        "",
         [
           Validators.required,
           Validators.pattern("^[0-9]*$"),

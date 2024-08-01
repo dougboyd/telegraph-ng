@@ -53,6 +53,59 @@
         </button>
       </mat-list-item>
     </mat-list>
+
+    <!-- Visualisation Choices -->
+    <hr />
+    <p>Filter</p>
+    <mat-list role="visualisationChoices">
+      <!-- Person -->
+      <mat-list-item role="selectPerson">
+        <mat-form-field>
+          <mat-label>Person</mat-label>
+          <mat-select
+            (selectionChange)="filterDataVisualisation()"
+            [(value)]="activePerson">
+            @for (person of personsForSelect$ | async; track person) {
+            <mat-option [value]="person.name">{{ person.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Opportunity -->
+      <mat-list-item role="selectOpportunity">
+        <mat-form-field>
+          <mat-label>Opportunity</mat-label>
+          <mat-select
+            (selectionChange)="filterDataVisualisation()"
+            [(value)]="activeOpportunity">
+            @for (opportunity of opportunitiesForSelect$ | async; track
+            opportunity) {
+            <mat-option [value]="opportunity.name">{{
+              opportunity.name
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Visualisation -->
+      <mat-list-item role="selectVisualisation">
+        <mat-form-field>
+          <mat-label>Visualisation</mat-label>
+          <mat-select
+            (selectionChange)="setActiveVisualisationFromSelect()"
+            [(value)]="activeVisualisation">
+            @for (visualisation of visualisations$ | async; track visualisation)
+            {
+            <mat-option [value]="visualisation.name">{{
+              visualisation.name
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+    </mat-list>
   </mat-drawer>
 
   <div class="example-sidenav-content">

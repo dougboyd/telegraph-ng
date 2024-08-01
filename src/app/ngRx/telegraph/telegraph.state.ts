@@ -1,12 +1,21 @@
 import { AppState } from "../core.state";
+import { Opportunity } from "../models/opportunity.model";
 import { Person } from "../models/person.model";
+import { RelationshipType } from "../models/relationship-type.model";
 // import { Customer } from "../models/customer.model";
 
 export interface TelegraphState {
+  isAuthenticated: boolean;
+  reloadOpportunitiesAndPersons: boolean;
+  relationshipMapData: any;
+  testD3Data: any;
   loading: boolean;
   error: boolean;
   errorMessage: string;
-  persons: Person[];
+  personsForSelect: Person[];
+  opportunitiesForSelect: Opportunity[];
+  standingData: any;
+  relationshipTypesForSelect: RelationshipType[];
 }
 
 export interface State extends AppState {

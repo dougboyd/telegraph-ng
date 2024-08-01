@@ -1,1 +1,15 @@
-<p>data-view works!</p>
+<div>
+  @if ((activeVisualisation$ | async)! === 'roundView') {
+  <app-round-view></app-round-view>
+  }
+</div>
+<div>
+  @if ((activeVisualisation$ | async)! === 'relationshipMap') {
+  <app-relationship-map></app-relationship-map>
+  }
+</div>
+<div>
+  @if ((activeVisualisation$ | async)! === 'forceGraphExample') {
+  <app-force-graph-example></app-force-graph-example>
+  }
+</div>

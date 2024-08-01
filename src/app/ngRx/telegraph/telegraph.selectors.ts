@@ -3,6 +3,16 @@ import { AppState } from "../core.state";
 
 export const selectTelegraphState = (state: AppState) => state.telegraph;
 
+export const selectRelationshipMapData = createSelector(
+  selectTelegraphState,
+  (state) => state.relationshipMapData
+);
+
+export const selectTestD3Data = createSelector(
+  selectTelegraphState,
+  (state) => state.testD3Data
+);
+
 export const selectLoading = createSelector(
   selectTelegraphState,
   (state) => state.loading
@@ -18,7 +28,27 @@ export const selectErrorMessage = createSelector(
   (state) => state.errorMessage
 );
 
-export const selectPersons = createSelector(
+export const selectPersonsForSelect = createSelector(
   selectTelegraphState,
-  (state) => state.persons
+  (state) => state.personsForSelect
+);
+
+export const selectOpportunitiesForSelect = createSelector(
+  selectTelegraphState,
+  (state) => state.opportunitiesForSelect
+);
+
+export const selectRelationshipTypesForSelect = createSelector(
+  selectTelegraphState,
+  (state) => state.relationshipTypesForSelect
+);
+
+export const selectReloadOpportunitiesAndPersons = createSelector(
+  selectTelegraphState,
+  (state) => state.reloadOpportunitiesAndPersons
+);
+
+export const selectIsAuthenticated = createSelector(
+  selectTelegraphState,
+  (state) => state.isAuthenticated
 );

@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTableModule } from "@angular/material/table";
@@ -8,6 +8,14 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterOutlet } from "@angular/router";
 import { TopToolbarComponent } from "./top-toolbar/top-toolbar.component";
 import { SideNavbarComponent } from "./side-navbar/side-navbar.component";
+import { select, Store } from "@ngrx/store";
+import { AppState } from "./ngRx/core.state";
+import {
+  getStandingData,
+  postRelationshipMapData,
+} from "./ngRx/telegraph/telegraph.actions";
+import { Observable } from "rxjs";
+import { IpService } from "./ngRx/telegraph/ip-service.service";
 
 @Component({
   selector: "app-root",
@@ -16,7 +24,20 @@ import { SideNavbarComponent } from "./side-navbar/side-navbar.component";
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  reloadStandingData$!: Observable<boolean>;
+
   // showFiller = false;
-  constructor() {}
+  constructor(private store: Store<AppState>, private ipService: IpService) {}
+
+  ngOnInit(): void {
+    // this.store.dispatch(getStandingData());
+
+    this.ipService.getIPAddress().subscribe((result: any) => {
+      console.log(result.ip);
+      console.log(result.ip);
+      console.log(result.ip);
+      console.log(result.ip);
+    });
+  }
 }

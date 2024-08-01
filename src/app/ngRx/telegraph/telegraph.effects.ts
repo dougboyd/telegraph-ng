@@ -12,6 +12,106 @@ import { Person } from "../models/person.model";
 export class TelegraphEffects {
   constructor(private actions$: Actions, private service: TelegraphService) {}
 
+  // Get standing data
+  public getStandingData = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        ofType(telegraphActions.getStandingData),
+        switchMap(() => {
+          return this.service.getStandingData().pipe(
+            map((response: any) =>
+              telegraphActions.getStandingDataSuccess({
+                data: response,
+              })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                telegraphActions.getStandingDataFailure({
+                  errorMessage: error.message,
+                })
+              )
+            )
+          );
+        })
+      )
+  );
+
+  // Get all nodes
+  public getAllNodes = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        ofType(telegraphActions.getAllNodes),
+        switchMap(() => {
+          return this.service.getAllNodes().pipe(
+            map((response: any) =>
+              telegraphActions.getAllNodesSuccess({
+                data: response,
+              })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                telegraphActions.getAllNodesFailure({
+                  errorMessage: error.message,
+                })
+              )
+            )
+          );
+        })
+      )
+  );
+
+  // Get relationship map data
+  public postRelationshipMapData = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        // ofType(telegraphActions.createPerson),
+        // switchMap((payload: { person: Person }) => {
+        // return this.service.createPerson(payload.person).pipe(
+
+        ofType(telegraphActions.postRelationshipMapData),
+        switchMap((filter: any) => {
+          return this.service.postRelationshipMapData(filter).pipe(
+            map((response: any) =>
+              telegraphActions.postRelationshipMapDataSuccess({
+                data: response,
+              })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                telegraphActions.postRelationshipMapDataFailure({
+                  errorMessage: error.message,
+                })
+              )
+            )
+          );
+        })
+      )
+  );
+
+  // Create test data
+  public setTestD3Data = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        ofType(telegraphActions.setTestD3Data),
+        switchMap(() => {
+          return this.service.loadTestD3Data().pipe(
+            map((response: any) =>
+              telegraphActions.setTestD3DataSuccess({
+                data: response,
+              })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                telegraphActions.setTestD3DataFailure({
+                  errorMessage: error.message,
+                })
+              )
+            )
+          );
+        })
+      )
+  );
+
   // Create a person
   public loadPersons = createEffect(
     (): Observable<Action> =>
@@ -51,6 +151,30 @@ export class TelegraphEffects {
             catchError((error: HttpErrorResponse) =>
               of(
                 telegraphActions.createPersonFailure({
+                  errorMessage: error.message,
+                })
+              )
+            )
+          );
+        })
+      )
+  );
+
+  // Create a person
+  public createRelationship = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        ofType(telegraphActions.createRelationship),
+        switchMap((payload: { formData: any }) => {
+          return this.service.createRelationship(payload.formData).pipe(
+            map((response: any) =>
+              telegraphActions.createRelationshipSuccess({
+                message: "Completed",
+              })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                telegraphActions.createRelationshipFailure({
                   errorMessage: error.message,
                 })
               )
