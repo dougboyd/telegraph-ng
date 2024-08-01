@@ -13,7 +13,7 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { CustomerEffects } from "./ngRx/customer/customer.effects";
 import { customerReducer } from "./ngRx/customer/customer.reducers";
 import { CustomerService } from "./ngRx/customer/customer.service";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { uxReducer } from "./ngRx/ux/ux.reducers";
 import { UxEffects } from "./ngRx/ux/ux.effects";
 import { ReactiveFormsModule } from "@angular/forms";
