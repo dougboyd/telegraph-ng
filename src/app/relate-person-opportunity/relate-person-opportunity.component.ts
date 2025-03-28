@@ -35,7 +35,6 @@ import {
   createRelationship,
   loadPersons,
 } from "../ngRx/telegraph/telegraph.actions";
-import { CustomValidators } from "../custom-validators.validator";
 import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
 import { Person } from "../ngRx/models/person.model";

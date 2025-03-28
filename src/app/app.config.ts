@@ -40,6 +40,6 @@ export const appConfig: ApplicationConfig = {
     HttpClientModule,
     HttpClient,
     ReactiveFormsModule,
-    importProvidersFrom(HttpClientModule),
+    importProvidersFrom(HttpClientModule), provideAnimationsAsync(),
   ],
 };
