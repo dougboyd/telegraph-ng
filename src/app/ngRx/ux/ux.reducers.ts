@@ -1,22 +1,10 @@
-import {
-  setActiveVisualisation,
-  setMainContentDimensions,
-  toggleNavBar,
-} from "./ux.actions";
-import { createReducer, on } from "@ngrx/store";
-import { UxState } from "./ux.state";
+import { toggleNavBar } from './ux.actions';
+import { createReducer, on } from '@ngrx/store';
+import { UxState } from './ux.state';
 
 export const initialState: UxState = {
   navVisible: true,
-  mainContentHeight: 10,
-  mainContentWidth: 10,
   //
-  visualisations: [
-    { name: "relationshipMap" },
-    { name: "roundView" },
-    { name: "forceGraphExample" },
-  ],
-  activeVisualisation: "relationshipMap",
 };
 
 export const uxReducer = createReducer(
@@ -33,23 +21,6 @@ export const uxReducer = createReducer(
     return {
       ...state,
       navVisible: navToggle,
-    };
-  }),
-
-  // Store the main content height and width
-  on(setMainContentDimensions, (state, response) => {
-    return {
-      ...state,
-      mainContentHeight: response.height,
-      mainContentWidth: response.width,
-    };
-  }),
-
-  // set the active visualisation
-  on(setActiveVisualisation, (state, response) => {
-    return {
-      ...state,
-      activeVisualisation: response.visualisationName,
     };
   })
 );

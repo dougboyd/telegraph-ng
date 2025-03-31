@@ -1,10 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Customer } from "../models/customer.model";
-import { CustomerParams } from "../models/customer-params";
-import { Observable, of } from "rxjs";
-import { delay } from "rxjs/operators";
-import { CustomerResponse } from "../models/customer-response";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class UxService {

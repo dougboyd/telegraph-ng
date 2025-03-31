@@ -1,12 +1,28 @@
-import { createAction, props } from "@ngrx/store";
+import { createAction, props } from '@ngrx/store';
 // imporimport { createAction, props } from '@ngrx/store';
 // import { CustomerParams } from "../models/customer-params";
 // import { CustomerResponse } from "../models/customer-response";
-import { Opportunity } from "../models/opportunity.model";
-import { Person } from "../models/person.model";
+// import { Opportunity } from "../models/opportunity.model";
+import { Person } from '../models/person.model';
 
 // export const toggleNavBar = createAction("[UX] Toggle Nav Bar");
 
+export const createPerson = createAction(
+  '[TELEGRAPH] Create Person',
+  props<{ person: Person }>()
+);
+
+export const createPersonSuccess = createAction(
+  '[TELEGRAPH] Create Person Success',
+  props<{ message: string }>()
+);
+
+export const createPersonFailure = createAction(
+  '[TELEGRAPH] Create Person Failure',
+  props<{ errorMessage: string }>()
+);
+
+/*
 // Get the standing data
 export const getStandingData = createAction("[TELEGRAPH] Get Standing Data");
 
@@ -92,21 +108,6 @@ export const createRelationshipFailure = createAction(
   props<{ errorMessage: string }>()
 );
 
-export const createPerson = createAction(
-  "[TELEGRAPH] Create Person",
-  props<{ person: Person }>()
-);
-
-export const createPersonSuccess = createAction(
-  "[TELEGRAPH] Create Person Success",
-  props<{ message: string }>()
-);
-
-export const createPersonFailure = createAction(
-  "[TELEGRAPH] Create Person Failure",
-  props<{ errorMessage: string }>()
-);
-
 export const loadPersons = createAction("[TELEGRAPH] Load Persons");
 
 export const loadPersonsSuccess = createAction(
@@ -123,3 +124,4 @@ export const setIsAuthenticated = createAction(
   "[TELEGRAPH] Set Is Authenticated",
   props<{ isAuthenticated: boolean }>()
 );
+*/

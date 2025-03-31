@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Add Person</h2>
+<div class="container" novalidate>
+  <form
+    [formGroup]="formGroup"
+    (ngSubmit)="createPerson(formGroup.value)"
+    class="form"
+  >
+    <mat-dialog-content>
+      <mat-form-field class="form-element">
+        <label>First Name</label>
+        <input
+          matInput
+          matInputAutofocus
+          label="First Name"
+          type="text"
+          formControlName="firstName"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <label>Last Name</label>
+        <input
+          matInput
+          matInputAutofocus
+          label="Last Name"
+          type="text"
+          formControlName="lastName"
+        />
+      </mat-form-field>
+      <!-- 
+      <mat-form-field class="form-element">
+        <label>Job Title</label>
+        <input
+          matInput
+          type="text"
+          formControlName="jobTitle" />
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <label>Rank</label>
+        <input
+          matInput
+          type="text"
+          formControlName="rank" />
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <label>archTIS Friendly (0 to 10)</label>
+        <input
+          matInput
+          type="number"
+          formControlName="archtisFriendly" />
+      </mat-form-field>
+       -->
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <div class="form-element">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="button"
+          [disabled]="!formGroup.valid"
+        >
+          Submit Form
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>

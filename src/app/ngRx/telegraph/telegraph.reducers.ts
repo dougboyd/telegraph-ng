@@ -1,51 +1,60 @@
-import { createReducer, on } from "@ngrx/store";
-import { TelegraphState } from "./telegraph.state";
+import { createReducer, on } from '@ngrx/store';
+import { TelegraphState } from './telegraph.state';
 import {
-  createOpportunity,
-  createOpportunityFailure,
-  createOpportunitySuccess,
   createPerson,
   createPersonFailure,
   createPersonSuccess,
-  createRelationship,
-  createRelationshipFailure,
-  createRelationshipSuccess,
-  getAllNodes,
-  getAllNodesFailure,
-  getAllNodesSuccess,
-  getStandingData,
-  getStandingDataFailure,
-  getStandingDataSuccess,
-  loadPersons,
-  loadPersonsFailure,
-  loadPersonsSuccess,
-  postRelationshipMapData,
-  postRelationshipMapDataFailure,
-  postRelationshipMapDataSuccess,
-  setTestD3Data,
-  setTestD3DataFailure,
-  setTestD3DataSuccess,
-} from "./telegraph.actions";
-import { Person } from "../models/person.model";
-import { Opportunity } from "../models/opportunity.model";
+} from './telegraph.actions';
+// import { Person } from "../models/person.model";
+// import { Opportunity } from "../models/opportunity.model";
 
 export const initialState: TelegraphState = {
-  isAuthenticated: false,
-  relationshipMapData: {},
-  testD3Data: {},
-  loading: false,
-  error: false,
-  errorMessage: "No Error HERE!",
-  personsForSelect: [],
-  opportunitiesForSelect: [],
-  standingData: {},
-  relationshipTypesForSelect: [],
-  reloadOpportunitiesAndPersons: false,
+  // isAuthenticated: false,
+  // relationshipMapData: {},
+  // testD3Data: {},
+  loadingSpriteVisible: false,
+  // error: false,
+  // errorMessage: "No Error HERE!",
+  // personsForSelect: [],
+  // opportunitiesForSelect: [],
+  // standingData: {},
+  // relationshipTypesForSelect: [],
+  // reloadOpportunitiesAndPersons: false,
 };
 
 export const telegraphReducer = createReducer(
   initialState,
 
+  //
+  on(createPerson, (state, person) => {
+    return {
+      ...state,
+      loading: true,
+      error: false,
+      errorMessage: '',
+    };
+  }),
+  //
+  on(createPersonSuccess, (state, person) => {
+    return {
+      ...state,
+      loading: false,
+      error: false,
+      errorMessage: '',
+      reloadOpportunitiesAndPersons: true,
+    };
+  }),
+  //
+  on(createPersonFailure, (state, response) => {
+    return {
+      ...state,
+      loading: false,
+      error: true,
+      errorMessage: response.errorMessage,
+    };
+  })
+
+  /*
   //
   on(getStandingData, (state) => {
     return {
@@ -292,35 +301,6 @@ export const telegraphReducer = createReducer(
       loading: false,
       error: false,
       errorMessage: "",
-      reloadOpportunitiesAndPersons: true,
-    };
-  }),
-  //
-  on(createPersonFailure, (state, response) => {
-    return {
-      ...state,
-      loading: false,
-      error: true,
-      errorMessage: response.errorMessage,
-    };
-  }),
-
-  //
-  on(createPerson, (state, person) => {
-    return {
-      ...state,
-      loading: true,
-      error: false,
-      errorMessage: "",
-    };
-  }),
-  //
-  on(createPersonSuccess, (state, person) => {
-    return {
-      ...state,
-      loading: false,
-      error: false,
-      errorMessage: "",
     };
   }),
   //
@@ -332,4 +312,5 @@ export const telegraphReducer = createReducer(
       errorMessage: response.errorMessage,
     };
   })
+  */
 );
