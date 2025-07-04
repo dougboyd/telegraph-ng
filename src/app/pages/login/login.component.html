@@ -1,0 +1,63 @@
+<div class="login-container">
+    <h2 mat-dialog-title>Login</h2>
+
+    <mat-dialog-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input
+                        matInput
+                        type="email"
+                        formControlName="email"
+                        placeholder="Enter your email"
+                        [class.mat-form-field-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                    {{ getEmailErrorMessage() }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input
+                        matInput
+                        [type]="hidePassword ? 'password' : 'text'"
+                        formControlName="password"
+                        placeholder="Enter your password"
+                        [class.mat-form-field-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <button
+                        mat-icon-button
+                        matSuffix
+                        (click)="hidePassword = !hidePassword"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hidePassword"
+                        type="button">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    {{ getPasswordErrorMessage() }}
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button
+                mat-button
+                (click)="onCancel()"
+                [disabled]="isLoading">
+            Cancel
+        </button>
+        <button
+                mat-raised-button
+                color="primary"
+                (click)="onSubmit()"
+                [disabled]="isLoading">
+      <span *ngIf="isLoading">
+        <mat-spinner diameter="20" style="display: inline-block; margin-right: 8px;"></mat-spinner>
+        Logging in...
+      </span>
+            <span *ngIf="!isLoading">Login</span>
+        </button>
+    </mat-dialog-actions>
+</div>

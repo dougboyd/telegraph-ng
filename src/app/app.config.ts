@@ -14,6 +14,9 @@ import { telegraphReducer } from './ngrx/telegraph/telegraph.reducers';
 import { TelegraphEffects } from './ngrx/telegraph/telegraph.effects';
 import { TelegraphService } from './ngrx/telegraph/telegraph.service';
 import { provideHttpClient } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 export const appConfig: ApplicationConfig = {
   providers: [
