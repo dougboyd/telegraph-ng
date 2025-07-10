@@ -55,9 +55,12 @@ export class CreatePersonComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
 
+    /*
     setTimeout(() => {
       this.createPerson(this.formGroup.value);
     }, 1000);
+
+     */
   }
 
   createForm() {

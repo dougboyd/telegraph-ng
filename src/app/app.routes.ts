@@ -10,7 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 // import { authGuard } from "./auth/auth.guard";
 
 export const routes: Routes = [
-  //   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Uncommented to handle root path
   //   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: 'home', component: HomeComponent },
   //   { path: "signup", component: SignupComponent },

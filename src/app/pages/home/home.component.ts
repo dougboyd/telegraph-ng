@@ -1,27 +1,58 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-// import { AuthService } from "../../auth/auth.service";
-// import { AppState } from "../../ngRx/core.state";
-import { select, Store } from '@ngrx/store';
-// import { selectIsAuthenticated } from "../../ngRx/telegraph/telegraph.selectors";
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../modal-pages/login/login.service';
+import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatFormFieldModule, FormsModule, MatCardModule, MatInputModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  constructor() {}
+export class HomeComponent implements OnInit {
+  private hasTriggeredLogin = false;
 
-  public ngOnInit(): void {}
+  constructor(
+      private loginService: LoginService,
+      private router: Router
+  ) {}
 
-  public ngOnDestroy(): void {}
+  ngOnInit(): void {
+    // Only trigger login modal if not already triggered
+    if (!this.hasTriggeredLogin) {
+      this.triggerLoginModal();
+    }
+  }
+
+  private triggerLoginModal(): void {
+    this.hasTriggeredLogin = true;
+
+    this.loginService.openLoginModal().subscribe(result => {
+      if (result) {
+        console.log('Login successful:', result);
+        // User logged in successfully
+        // You can store auth state, redirect, or just continue on home page
+        // For example:
+        // this.authService.setAuthState(result);
+        // this.router.navigate(['/dashboard']); // if you want to redirect after login
+      } else {
+        console.log('Login cancelled');
+        // User cancelled login
+        // You might want to show the modal again or handle this case
+        // For now, we'll just stay on the home page
+      }
+    });
+  }
+
+  // Optional: Method to manually trigger login again
+  public showLogin(): void {
+    this.triggerLoginModal();
+  }
 }

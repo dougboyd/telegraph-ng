@@ -227,9 +227,12 @@ export class SideNavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.listenForUxChanges();
     this.listenForAsyncSpinnerChanges();
 
+    /*
     setTimeout(() => {
       this.openCreatePerson();
     }, 100);
+
+     */
     /*
 
     // Set the dimensions of the data frame to the NGRX layer
