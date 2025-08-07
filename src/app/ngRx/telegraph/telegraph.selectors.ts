@@ -1,7 +1,17 @@
-import { createSelector } from '@ngrx/store';
-import { AppState } from '../core.state';
+import { createSelector } from "@ngrx/store";
+import { AppState } from "../core.state";
 
 export const selectTelegraphState = (state: AppState) => state.telegraph;
+
+export const selectLoadingSpriteVisible = createSelector(
+  selectTelegraphState,
+  (state) => state.loadingSpriteVisible
+);
+
+export const selectIsAuthenticated = createSelector(
+  selectTelegraphState,
+  (state) => state.isAuthenticated
+);
 
 /*
 export const selectRelationshipMapData = createSelector(
@@ -14,11 +24,6 @@ export const selectTestD3Data = createSelector(
   (state) => state.testD3Data
 );
 */
-
-export const selectLoadingSpriteVisible = createSelector(
-  selectTelegraphState,
-  (state) => state.loadingSpriteVisible
-);
 
 /*
 export const selectError = createSelector(

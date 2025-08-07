@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import {
   MatDialogRef,
   MatDialogTitle,
   MatDialogContent,
   MatDialogActions,
   MatDialogClose,
-} from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
+} from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
 import {
   AbstractControl,
   FormBuilder,
@@ -14,17 +14,17 @@ import {
   FormsModule,
   ReactiveFormsModule,
   Validators,
-} from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
-import { AppState } from '../../ngrx/core.state';
-import { Store } from '@ngrx/store';
-import { createPerson } from '../../ngrx/telegraph/telegraph.actions';
-import { CustomValidators } from '../../custom-validators.validator';
+} from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { CommonModule } from "@angular/common";
+import { AppState } from "../../ngrx/core.state";
+import { Store } from "@ngrx/store";
+// import { createPerson } from '../../ngrx/telegraph/telegraph.actions';
+import { CustomValidators } from "../../custom-validators.validator";
 
 @Component({
-  selector: 'app-create-person',
+  selector: "app-create-person",
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -38,8 +38,8 @@ import { CustomValidators } from '../../custom-validators.validator';
     ReactiveFormsModule,
     CommonModule,
   ],
-  templateUrl: './create-person.component.html',
-  styleUrl: './create-person.component.css',
+  templateUrl: "./create-person.component.html",
+  styleUrl: "./create-person.component.css",
 })
 export class CreatePersonComponent implements OnInit {
   // name: string = "";
@@ -65,8 +65,8 @@ export class CreatePersonComponent implements OnInit {
 
   createForm() {
     this.formGroup = this.formBuilder.group({
-      firstName: ['Test First Name', Validators.required],
-      lastName: ['Test Last Name', Validators.required],
+      firstName: ["Test First Name", Validators.required],
+      lastName: ["Test Last Name", Validators.required],
       // jobTitle: ['', Validators.required],
       // rank: [''],
       // archtisFriendly: [
@@ -84,7 +84,7 @@ export class CreatePersonComponent implements OnInit {
    * Handles the submit from the create opportunity modal
    */
   createPerson(formSubmit: any): void {
-    this.store.dispatch(createPerson({ person: formSubmit }));
+    // this.store.dispatch(createPerson({ person: formSubmit }));
     console.log(formSubmit);
     this.dialogRef.close();
   }

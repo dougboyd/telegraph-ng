@@ -1,18 +1,14 @@
-import { createReducer, on } from '@ngrx/store';
-import { TelegraphState } from './telegraph.state';
-import {
-  createPerson,
-  createPersonFailure,
-  createPersonSuccess,
-} from './telegraph.actions';
+import { createReducer, on } from "@ngrx/store";
+import { TelegraphState } from "./telegraph.state";
+import { login, loginFailure, loginSuccess } from "./telegraph.actions";
 // import { Person } from "../models/person.model";
 // import { Opportunity } from "../models/opportunity.model";
 
 export const initialState: TelegraphState = {
-  // isAuthenticated: false,
+  loadingSpriteVisible: false,
+  isAuthenticated: false,
   // relationshipMapData: {},
   // testD3Data: {},
-  loadingSpriteVisible: false,
   // error: false,
   // errorMessage: "No Error HERE!",
   // personsForSelect: [],
@@ -26,26 +22,26 @@ export const telegraphReducer = createReducer(
   initialState,
 
   //
-  on(createPerson, (state, person) => {
+  on(login, (state, login) => {
+    console.log("in login");
     return {
       ...state,
       loading: true,
       error: false,
-      errorMessage: '',
+      errorMessage: "",
     };
   }),
   //
-  on(createPersonSuccess, (state, person) => {
+  on(loginSuccess, (state, login) => {
     return {
       ...state,
       loading: false,
       error: false,
-      errorMessage: '',
-      reloadOpportunitiesAndPersons: true,
+      errorMessage: "",
     };
   }),
   //
-  on(createPersonFailure, (state, response) => {
+  on(loginFailure, (state, response) => {
     return {
       ...state,
       loading: false,

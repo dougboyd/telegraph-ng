@@ -1,24 +1,25 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props } from "@ngrx/store";
 // imporimport { createAction, props } from '@ngrx/store';
 // import { CustomerParams } from "../models/customer-params";
 // import { CustomerResponse } from "../models/customer-response";
 // import { Opportunity } from "../models/opportunity.model";
-import { Person } from '../models/person.model';
+import { Person } from "../models/person.model";
+import { Login } from "../models/login.model";
 
 // export const toggleNavBar = createAction("[UX] Toggle Nav Bar");
 
-export const createPerson = createAction(
-  '[TELEGRAPH] Create Person',
-  props<{ person: Person }>()
+export const login = createAction(
+  "[TELEGRAPH] Login",
+  props<{ login: Login }>()
 );
 
-export const createPersonSuccess = createAction(
-  '[TELEGRAPH] Create Person Success',
+export const loginSuccess = createAction(
+  "[TELEGRAPH] Login Success",
   props<{ message: string }>()
 );
 
-export const createPersonFailure = createAction(
-  '[TELEGRAPH] Create Person Failure',
+export const loginFailure = createAction(
+  "[TELEGRAPH] Login Failure",
   props<{ errorMessage: string }>()
 );
 

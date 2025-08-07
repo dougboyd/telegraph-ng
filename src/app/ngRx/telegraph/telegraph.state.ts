@@ -1,4 +1,4 @@
-import { AppState } from '../core.state';
+import { AppState } from "../core.state";
 // import { Opportunity } from "../models/opportunity.model";
 // import { Person } from "../models/person.model";
 // import { RelationshipType } from "../models/relationship-type.model";
@@ -6,7 +6,7 @@ import { AppState } from '../core.state';
 
 export interface TelegraphState {
   loadingSpriteVisible: boolean;
-  // isAuthenticated: boolean;
+  isAuthenticated: boolean;
   // reloadOpportunitiesAndPersons: boolean;
   // relationshipMapData: any;
   // testD3Data: any;

@@ -1,32 +1,33 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { switchMap, map, catchError, of, Observable } from 'rxjs';
-import { TelegraphService } from './telegraph.service';
-import * as telegraphActions from './telegraph.actions';
+import { HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { Action } from "@ngrx/store";
+import { switchMap, map, catchError, of, Observable } from "rxjs";
+import { TelegraphService } from "./telegraph.service";
+import * as telegraphActions from "./telegraph.actions";
 // import { Opportunity } from "../models/opportunity.model";
-import { Person } from '../models/person.model';
+import { Person } from "../models/person.model";
+import { Login } from "../models/login.model";
 
 @Injectable()
 export class TelegraphEffects {
   constructor(private actions$: Actions, private service: TelegraphService) {}
 
-  // Create a person
-  public createPerson = createEffect(
+  // Log in a user - this is the authenticate
+  public login = createEffect(
     (): Observable<Action> =>
       this.actions$.pipe(
-        ofType(telegraphActions.createPerson),
-        switchMap((payload: { person: Person }) => {
-          return this.service.createPerson(payload.person).pipe(
-            map((response: Person) =>
-              telegraphActions.createPersonSuccess({
-                message: 'Completed',
+        ofType(telegraphActions.login),
+        switchMap((payload: { login: Login }) => {
+          return this.service.login(payload.login).pipe(
+            map((response: Login) =>
+              telegraphActions.loginSuccess({
+                message: "Completed",
               })
             ),
             catchError((error: HttpErrorResponse) =>
               of(
-                telegraphActions.createPersonFailure({
+                telegraphActions.loginFailure({
                   errorMessage: error.message,
                 })
               )

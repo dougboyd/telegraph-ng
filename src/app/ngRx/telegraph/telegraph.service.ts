@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 // import { Customer } from "../models/customer.model";
 // import { CustomerParams } from "../models/customer-params";
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
+import { delay } from "rxjs/operators";
 // import { CustomerResponse } from "../models/customer-response";
 // import { Opportunity } from "../models/opportunity.model";
-import { Person } from '../models/person.model';
+import { Person } from "../models/person.model";
+import { Login } from "../models/login.model";
 
 @Injectable()
 export class TelegraphService {
@@ -17,10 +18,10 @@ export class TelegraphService {
    * @param person
    * @returns
    */
-  public createPerson(person: Person): Observable<any> {
-    return this.httpClient.post<Person>(
-      'http://localhost:8082/createPerson',
-      person
+  public login(login: Login): Observable<any> {
+    return this.httpClient.post<Login>(
+      "http://localhost:3000/api/login",
+      login
     );
   }
 
